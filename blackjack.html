@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Blackjack Game - Julian Se</title>
+  <!--jQuery-->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+<style>
+
+#table {
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  border-radius: 30pt;
+  width:800px;
+  height: 500px;
+}
+
+.dealer-section {
+  order: 1;
+  margin: auto;
+  color: white;
+  font-weight: bold;
+}
+
+#dealer-hand {
+  height: 80px;
+  width: 700px;
+  background-color: #79c879;
+  margin: auto;
+}
+
+.player-section {
+  order: 2;
+  margin: auto;
+  color: white;
+  font-weight:bold;
+}
+
+#player-hand {
+  height: 80px;
+  width: 700px;
+  background-color: #79c879;
+  margin: auto;
+}
+
+.buttons {
+  order: 3;
+  width:150px;
+  height: 100px;
+  margin: auto;
+}
+
+img {
+  height: inherit;
+}
+
+</style>
+
+<body>
+<div id="table">
+
+  <div id="messages"></div>
+  <div class ="dealer-section">
+  <label>Dealer: </label>
+  <label id="dealer-points" class="points"></label>
+  <div id="dealer-hand" class="hand">
+  </div>
+  </div>
+
+
+  <div class ="player-section"
+  <label>Player: </label>
+  <label id="player-points" class="points"></label>
+  <div id="player-hand" class="hand">
+  </div>
+  </div>
+
+  <div class="buttons">
+    <button id="deal-button">Deal</button>
+    <button id="hit-button">Hit</button>
+    <button id="stand-button">Stand</button>
+  </div>
+
+</div>
+
+<script>
+
+  $(document).ready(function(){
+
+    $("#deal-button").click(function(e){
+      e.preventDefault();
+      $("#dealer-hand").prepend('<img src ="images/9d.png">');
+      $("#dealer-hand").prepend('<img src ="images/2h.png">');
+      $("#player-hand").prepend('<img src ="images/jd.png">');
+      $("#player-hand").prepend('<img src ="images/as.png">');
+    });
+
+    $("#hit-button").click(function(e){
+      e.preventDefault();
+      $("#player-hand").append('<img src ="images/jd.png">');
+    });
+
+  });
+
+  var aD = {point: 1, suit: 'd'};
+  var twoD = {point: 2, suit: 'd'};
+  var threeD = {point: 3, suit: 'd'};
+  var fourD = {point: 4, suit: 'd'};
+  var fiveD = {point: 5, suit: 'd'};
+  var sixD = {point: 6, suit: 'd'};
+  var sevenD = {point: 7, suit: 'd'};
+  var eightD = {point: 8, suit: 'd'};
+  var nineD = {point: 9, suit: 'd'};
+  var tenD = {point: 10, suit: 'd'};
+  var jackD = {point: 11, suit: 'd'};
+  var queenD = {point: 12, suit: 'd'};
+  var kingD = {point: 13, suit: 'd'};
+
+  var aH = {point: 1, suit: 'h'};
+  var twoH = {point: 2, suit: 'h'};
+  var threeH = {point: 3, suit: 'h'};
+  var fourH = {point: 4, suit: 'h'};
+  var fiveH = {point: 5, suit: 'h'};
+  var sixH = {point: 6, suit: 'h'};
+  var sevenH = {point: 7, suit: 'h'};
+  var eightH = {point: 8, suit: 'h'};
+  var nineH = {point: 9, suit: 'h'};
+  var tenH = {point: 10, suit: 'h'};
+  var jackH = {point: 11, suit: 'h'};
+  var queenH = {point: 12, suit: 'h'};
+  var kingH = {point: 13, suit: 'h'};
+
+  var aS = {point: 1, suit: 's'};
+  var twoS = {point: 2, suit: 's'};
+  var threeS = {point: 3, suit: 's'};
+  var fourS = {point: 4, suit: 's'};
+  var fiveS = {point: 5, suit: 's'};
+  var sixS = {point: 6, suit: 's'};
+  var sevenS = {point: 7, suit: 's'};
+  var eightS = {point: 8, suit: 's'};
+  var nineS = {point: 9, suit: 's'};
+  var tenS = {point: 10, suit: 's'};
+  var jackS = {point: 11, suit: 's'};
+  var queenS = {point: 12, suit: 's'};
+  var kingS = {point: 13, suit: 's'};
+
+  var aC = {point: 1, suit: 'c'};
+  var twoC = {point: 2, suit: 'c'};
+  var threeC = {point: 3, suit: 'c'};
+  var fourC = {point: 4, suit: 'c'};
+  var fiveC = {point: 5, suit: 'c'};
+  var sixC = {point: 6, suit: 'c'};
+  var sevenC = {point: 7, suit: 'c'};
+  var eightC = {point: 8, suit: 'c'};
+  var nineC = {point: 9, suit: 'c'};
+  var tenC = {point: 10, suit: 'c'};
+  var jackC = {point: 11, suit: 'c'};
+  var queenC = {point: 12, suit: 'c'};
+  var kingC = {point: 13, suit: 'c'};
+
+  var deck =[aD, twoD, threeD, fourD, fiveD, sixD, sevenD, eightD, nineD, tenD, jackD, queenD, kingD,
+      aH, twoH, threeH, fourH, fiveH, sixH, sevenH, eightH, nineH, tenH, jackH, queenH, kingH,
+      aC, twoC, threeC, fourC, fiveC, sixC, sevenC, eightC, nineC, tenC, jackC, queenC, kingC,
+      aS, twoS, threeS, fourS, fiveS, sixS, sevenS, eightS, nineS, tenS, jackS, queenS, kingS];
+
+  function deal(card) {
+    delete deck[card]
+  }
+
+  dealerHand = [];
+  playerHand = [];
+
+  function calculatePoints(object) {
+    array = []
+    array.push(Object.values(object))
+    console.log(array)
+  }
+
+
+</script>
+
+</body>
+</html>
