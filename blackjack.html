@@ -3,6 +3,7 @@
 <head>
 
   <title>Blackjack Game - Julian Se</title>
+
   <!--jQuery-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -16,6 +17,8 @@
   border-radius: 30pt;
   width:800px;
   height: 500px;
+  margin: 0 auto;
+  margin-top: 10%;
 }
 
 .dealer-section {
@@ -104,9 +107,9 @@ img {
     });
 
   });
-
-  var aD = {point: 1, suit: 'd'};
-  var twoD = {point: 2, suit: 'd'};
+  // need to finish adding ID ( name the ID the same as the pictures)
+  var aD = {point: 1, suit: 'd', id: "AD"};
+  var twoD = {point: 2, suit: 'd', id: "twoD"};
   var threeD = {point: 3, suit: 'd'};
   var fourD = {point: 4, suit: 'd'};
   var fiveD = {point: 5, suit: 'd'};
@@ -166,12 +169,23 @@ img {
       aC, twoC, threeC, fourC, fiveC, sixC, sevenC, eightC, nineC, tenC, jackC, queenC, kingC,
       aS, twoS, threeS, fourS, fiveS, sixS, sevenS, eightS, nineS, tenS, jackS, queenS, kingS];
 
-  function deal(card) {
-    delete deck[card]
+  function dealPlayer(card) {
+    delete deck[card];
+    playerHand.push(card);
   }
 
-  dealerHand = [];
-  playerHand = [];
+  function dealDealer(card) {
+    delete deck[card];
+    dealerHand.push(card);
+  }
+
+  function getCardImageUrl(card) {
+    return `images/${card.id}.png`;
+  }
+
+
+  var dealerHand = [];
+  var playerHand = [];
 
   function calculatePoints(object) {
     array = []
