@@ -246,8 +246,21 @@ img {
   };
 
 
-
-
+// function that will happen when player hits stand
+// not done - needs work -
+//need to add the function that keeps dealing the dealer's hand until it gets to 21 or bust
+// need to add case for if your hand is over 21 and you bust 
+function standEndGame(){
+  var dealerPoints = calculatePoints(dealerHand);
+  var playerPoints = calculatePoints(playerHand);
+  if (dealerPoints > playerPoints && dealerPoints <= 21) {
+    console.log("Sorry you lose! Play again?");
+  } else if (playerPoints > dealerPoints && playerPoints <= 21) {
+    console.log("Congrats you win! Play again?");
+  } else if (playerPoints == dealerPoints){
+    console.log("Tie game. Play again?")
+  }
+}
 
 </script>
 
