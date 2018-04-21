@@ -130,16 +130,27 @@ img {
 
     $("#hit-button").click(function(e){
       e.preventDefault();
-
+      if (calculatePoints(playerHand) == 21){
+        endgame();
+      } else
       $("#player-hand").append(`<img src ="${dealPlayer()}">`);
       $("#player-points").html(`Player: ${calculatePoints(playerHand)}`);
+      bust(playerHand);
+
     });
 
 
     $("#stand-button").click(function(e){
       e.preventDefault();
-
-      //add action for stand button here
+      var pointSum = calculatePoints(dealerHand);
+      while (pointSum < 17) {
+          $("#dealer-hand").prepend(`<img src="${dealDealer()}">`);
+          $("#dealer-points").html(`Dealer: ${calculatePoints(dealerHand)}`);
+          pointSum = calculatePoints(dealerHand);
+          console.log(pointSum);
+        }
+          endGame();
+          $(".buttons").toggle();
 
     });
 
@@ -242,25 +253,55 @@ img {
     var pointSum = hand.reduce(function (sum, d){
       return sum + d.point;
     }, 0);
+
     return pointSum;
   };
 
 
-// function that will happen when player hits stand
-// not done - needs work -
-//need to add the function that keeps dealing the dealer's hand until it gets to 21 or bust
-// need to add case for if your hand is over 21 and you bust 
-function standEndGame(){
+function endGame(){
   var dealerPoints = calculatePoints(dealerHand);
   var playerPoints = calculatePoints(playerHand);
-  if (dealerPoints > playerPoints && dealerPoints <= 21) {
-    console.log("Sorry you lose! Play again?");
-  } else if (playerPoints > dealerPoints && playerPoints <= 21) {
-    console.log("Congrats you win! Play again?");
+
+  if (playerPoints == 21){
+    setTimeout(function(){
+    alert("Blackjack! You win! :D");
+  }, 1500);
+
   } else if (playerPoints == dealerPoints){
-    console.log("Tie game. Play again?")
+    setTimeout(function(){
+    alert("Tie Game. :| Refresh to play again.");
+  }, 1500);
+
+  } else if (playerPoints > dealerPoints && playerPoints <= 21) {
+    setTimeout(function(){
+    alert("Congrats you win! :D Refresh to play again.");
+  }, 1500);
+
+  } else if (dealerPoints > playerPoints && dealerPoints <= 21) {
+    setTimeout(function(){
+    alert("Sorry, you lost. :( Refresh to play again.");
+  }, 1500);
+
+  } else if (playerPoints > 21) {
+    setTimeout(function(){
+    alert("Sorry, you busted. :( Refresh to play again.");
+  }, 1500);
+
+} else if (playerPoints <= 21 && dealerPoints > 21) {
+    setTimeout(function(){
+    alert("Congrats you win! :D Refresh to play again.");
+  }, 1500);
+
+  }
+};
+
+function bust(hand){
+  if (calculatePoints(hand) > 21) {
+    console.log("BUST");
+    endGame();
   }
 }
+
 
 </script>
 
