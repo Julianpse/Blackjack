@@ -1,0 +1,67 @@
+
+body {
+  background-image: url(../images/casino.jpg);
+}
+
+#table {
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  border-radius: 30pt;
+  width:800px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+.dealer-section {
+  order: 1;
+  margin: auto;
+  margin-top: 75px;
+  color: white;
+  font-weight: bold;
+}
+
+#dealer-hand {
+  height: 80px;
+  width: 700px;
+  background-color: #79c879;
+  margin: auto;
+}
+
+#logo {
+  order: 2;
+  margin: 0 auto;
+}
+
+.player-section {
+  order: 3;
+  margin: auto;
+  color: white;
+  font-weight:bold;
+}
+
+#player-hand {
+  height: 80px;
+  width: 700px;
+  background-color: #79c879;
+  margin: auto;
+}
+
+.buttons {
+  order: 3;
+  width:250px;
+  height: 100px;
+  margin: 0 auto;
+  padding-left: 50px;
+}
+
+#deal-button, #hit-button, #stand-button, #newGame-button{
+  background-color: black;
+  color: white;
+  font-size: 25px;
+}
+
+img {
+  height: inherit;
+}
